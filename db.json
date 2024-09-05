@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": "c67d",
+      "name": "Cauã da Silva",
+      "email": "adm@gmail.com",
+      "phone": "+55 (11) 975143806",
+      "cpf": "463.072.358-70",
+      "birthdate": "2024-09-03",
+      "gender": "feminino",
+      "password": "1234",
+      "confirmPassword": "1234"
+    },
+    {
+      "id": "99d0",
+      "name": "Cauã da Silva",
+      "email": "caua.silva90210@gmail.com",
+      "phone": "+55 (11) 975143",
+      "cpf": "463.072.358-70",
+      "birthdate": "2024-09-13",
+      "gender": "masculino",
+      "password": "1234",
+      "confirmPassword": "1234"
+    }
+  ]
+}
