@@ -22,5 +22,30 @@
       "password": "1234",
       "confirmPassword": "1234"
     }
+  ],
+  "psicologo": [
+    {
+      "id": "c67d",
+      "name": "Cauã da Silva",
+      "email": "adm@gmail.com",
+      "phone": "+55 (11) 975143806",
+      "cpf": "463.072.358-70",
+      "birthdate": "2024-09-03",
+      "gender": "feminino",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "crp": "09087654"
+    },
+    {
+      "id": "7cd5",
+      "nome": "teste",
+      "email": "teste@teste.com",
+      "senha": "1234",
+      "telefone": "11111111111",
+      "cpf": "463.072.358-70",
+      "data_nascimento": "2024-09-25",
+      "sexo": "masculino",
+      "crp": "09873773"
+    }
   ]
 }
