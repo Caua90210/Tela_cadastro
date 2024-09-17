@@ -12,6 +12,8 @@ interface RegisterFormProps {
         gender: string;
         password: string;
         confirmPassword: string;
+        photo: string;
+        instagram: string;
     };
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -75,11 +77,25 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                                 required
                             >
                                 <option value="">Selecione</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outro">Outro</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                                <option value="3">Outro</option>
                             </select>
                         </div>
+                        <FormInput
+                            type="text"
+                            name="photo"
+                            value={form.photo}
+                            onChange={onChange}
+                            label="Link da Foto de Perfil"
+                        />
+                        <FormInput
+                            type="text"
+                            name="instagram"
+                            value={form.instagram}
+                            onChange={onChange}
+                            label="Link do Instagram"
+                        />
                         <FormInput
                             type="password"
                             name="password"

@@ -1,10 +1,9 @@
-// src/components/Register.tsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import RegisterForm from '../Componentes/Cadastro/RegisterForm';
 import RegisterFormPsicologo from '../Componentes/Cadastro/RegisterFormPsicologo';
-import ToggleButton from '../Componentes/Buttons/TuggleButton';
+import ToggleButton from '../Componentes/Buttons/TuggleButton'; // Correção do nome do componente
 
 const Register: React.FC = () => {
     const [form, setForm] = useState({
@@ -16,12 +15,16 @@ const Register: React.FC = () => {
         gender: '',
         password: '',
         confirmPassword: '',
-        crp: ''
+        crp: '',
+        photo: '',
+        instagram: '',
+        description: '', // Adicionado para psicólogos
     });
+
     const [userType, setUserType] = useState<'client' | 'psychologist'>('client');
     const navigate = useNavigate();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
@@ -43,11 +46,17 @@ const Register: React.FC = () => {
             telefone: form.phone,
             cpf: form.cpf,
             data_nascimento: form.birthdate,
-            sexo: form.gender,
-            crp: userType === 'psychologist' ? form.crp : undefined
+            id_sexo: form.gender,
+            foto_perfil: form.photo,
+            link_instagram: form.instagram,
+            crp: userType === 'psychologist' ? form.crp : undefined,
+            descricao: userType === 'psychologist' ? form.description : undefined, // Adicionado para psicólogos
         };
 
-        const endpoint = userType === 'client' ? 'http://localhost:3000/users' : 'http://localhost:3000/psicologo';
+        // Altere o endpoint para enviar para a API correta
+        const endpoint = userType === 'client' 
+            ? 'http://localhost:8080/v1/vivaris/cliente' 
+            : 'http://localhost:8080/v1/vivaris/psicologo';
 
         try {
             await axios.post(endpoint, clientData, {
@@ -65,7 +74,6 @@ const Register: React.FC = () => {
 
     return (
         <div className="flex flex-col items-center justify-center p-4 min-h-screen bg-gray-100">
-            
             <div className="mb-6 flex space-x-4">
                 <ToggleButton
                     active={userType === 'client'}

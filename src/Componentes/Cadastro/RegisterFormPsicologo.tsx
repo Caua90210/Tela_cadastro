@@ -1,4 +1,4 @@
-
+// src/components/RegisterFormPsicologo.tsx
 import React from 'react';
 import FormInput from '../Inputs/FormInput';
 
@@ -12,18 +12,21 @@ interface RegisterFormPsicologoProps {
         gender: string;
         password: string;
         confirmPassword: string;
-        crp: string; 
+        photo: string;
+        instagram: string;
+        crp: string; // CIP (registro profissional)
+        description: string;
     };
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const RegisterFormPsicologo: React.FC<RegisterFormPsicologoProps> = ({ form, onChange, onSubmit }) => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-            
+            {/* Container para o formulário */}
             <div className="w-full max-w-lg bg-white p-8 shadow-lg rounded-lg">
-                <h2 className="text-2xl font-bold text-center text-[#52B693] mb-6">Cadastro Psicólogo</h2>
+                <h2 className="text-2xl font-bold text-center text-[#52B693] mb-6">Cadastro de Psicólogo</h2>
                 <form onSubmit={onSubmit}>
                     <div className="grid grid-cols-1 gap-4">
                         <FormInput
@@ -59,6 +62,14 @@ const RegisterFormPsicologo: React.FC<RegisterFormPsicologoProps> = ({ form, onC
                             required
                         />
                         <FormInput
+                            type="text"
+                            name="crp"
+                            value={form.crp}
+                            onChange={onChange}
+                            label="CIP (Registro Profissional)"
+                            required
+                        />
+                        <FormInput
                             type="date"
                             name="birthdate"
                             value={form.birthdate}
@@ -76,19 +87,37 @@ const RegisterFormPsicologo: React.FC<RegisterFormPsicologoProps> = ({ form, onC
                                 required
                             >
                                 <option value="">Selecione</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outro">Outro</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                                <option value="3">Outro</option>
                             </select>
                         </div>
                         <FormInput
                             type="text"
-                            name="crp"
-                            value={form.crp}
+                            name="photo"
+                            value={form.photo}
                             onChange={onChange}
-                            label="CRP"
-                            required
+                            label="Link da Foto de Perfil"
                         />
+                        <FormInput
+                            type="text"
+                            name="instagram"
+                            value={form.instagram}
+                            onChange={onChange}
+                            label="Link do Instagram"
+                        />
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Descrição</label>
+                            <textarea
+                                name="description"
+                                value={form.description}
+                                onChange={onChange}
+                                className="mt-1 p-2 block w-full border rounded-md"
+                                rows={4}
+                                placeholder="Descreva sua experiência e qualificações"
+                                required
+                            ></textarea>
+                        </div>
                         <FormInput
                             type="password"
                             name="password"
