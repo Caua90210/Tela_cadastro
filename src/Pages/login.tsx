@@ -2,7 +2,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import LoginForm from '../Componentes/Login/LoginForm';
+import whiteSquare from '../assets/whiteSquare.svg'
+import twoBoys from '../assets/twoBoys.svg'
+import vivarisLogo from '../assets/vivarisLogo.svg'
+import ContainerLogin from '../Componentes/Login/LoginForm';
 
 const Login: React.FC = () => {
     const [form, setForm] = useState({
@@ -47,12 +50,26 @@ const Login: React.FC = () => {
     };
 
     return (
-        <LoginForm
-            form={form}
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-            onUserTypeChange={(e) => setForm({ ...form, userType: e.target.value as 'client' | 'psychologist' })}
+        <div className="w-full h-full flex bg-[#52B693] flex-row fixed">
+      <div className='flex flex-col'>
+        <img src={whiteSquare} alt="" className='absolute pl-[40rem] -z-10' />
+        <div className='flex'>
+          <img src={vivarisLogo} alt="" />
+        </div>
+        <h1 className='text-[#ffffff] text-8xl font-semibold pl-[90px] mt-[144px]'>Seja<br />Bem Vindo!</h1>
+        <img src={twoBoys} alt="" className='mt-[5rem] ml-[400px] ' />
+      </div>
+      <div className='flex flex-col p-8 ml-12 justify-center '>
+      <ContainerLogin
+            
+            // onChange={handleChange}
+            // onSubmit={handleSubmit}
+            // onUserTypeChange={(e) => setForm({ ...form, userType: e.target.value as 'client' | 'psychologist' })}
         />
+      </div>
+    </div>
+
+
     );
 };
 

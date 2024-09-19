@@ -1,5 +1,4 @@
-// src/components/RegisterForm.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import FormInput from '../Inputs/FormInput';
 
 interface RegisterFormProps {
@@ -16,10 +15,33 @@ interface RegisterFormProps {
         instagram: string;
     };
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit }) => {
+    useEffect(() => {
+        const cadastrar = document.getElementById('cadastrar') as HTMLButtonElement;
+
+        cadastrar.addEventListener('click', (e) => {
+            e.preventDefault(); // Previne o envio do formulário
+
+            const usuarioData = {
+                nome: (document.getElementById('name') as HTMLInputElement).value,
+                email: (document.getElementById('email') as HTMLInputElement).value,
+                telefone: (document.getElementById('phone') as HTMLInputElement).value,
+                cpf: (document.getElementById('cpf') as HTMLInputElement).value,
+                data_nascimento: (document.getElementById('birthdate') as HTMLInputElement).value,
+                id_sexo: (document.getElementById('gender') as HTMLSelectElement).value,
+                foto_perfil: (document.getElementById('photo') as HTMLInputElement).value,
+                link_instagram: (document.getElementById('instagram') as HTMLInputElement).value,
+                senha: (document.getElementById('password') as HTMLInputElement).value,
+                confirmar_senha: (document.getElementById('confirmPassword') as HTMLInputElement).value,
+            };
+
+            console.log(usuarioData); 
+        });
+    }, []);
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
             {/* Container para o formulário */}
@@ -28,6 +50,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                 <form onSubmit={onSubmit}>
                     <div className="grid grid-cols-1 gap-4">
                         <FormInput
+                            id="name"
                             type="text"
                             name="name"
                             value={form.name}
@@ -36,6 +59,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             required
                         />
                         <FormInput
+                            id="email"
                             type="email"
                             name="email"
                             value={form.email}
@@ -44,6 +68,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             required
                         />
                         <FormInput
+                            id="phone"
                             type="tel"
                             name="phone"
                             value={form.phone}
@@ -52,6 +77,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             required
                         />
                         <FormInput
+                            id="cpf"
                             type="text"
                             name="cpf"
                             value={form.cpf}
@@ -60,6 +86,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             required
                         />
                         <FormInput
+                            id="birthdate"
                             type="date"
                             name="birthdate"
                             value={form.birthdate}
@@ -68,8 +95,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             required
                         />
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Sexo</label>
+                            <label htmlFor="gender" className="block text-sm font-medium text-gray-700">Sexo</label>
                             <select
+                                id="gender"
                                 name="gender"
                                 value={form.gender}
                                 onChange={onChange}
@@ -83,6 +111,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             </select>
                         </div>
                         <FormInput
+                            id="photo"
                             type="text"
                             name="photo"
                             value={form.photo}
@@ -90,6 +119,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             label="Link da Foto de Perfil"
                         />
                         <FormInput
+                            id="instagram"
                             type="text"
                             name="instagram"
                             value={form.instagram}
@@ -97,6 +127,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             label="Link do Instagram"
                         />
                         <FormInput
+                            id="password"
                             type="password"
                             name="password"
                             value={form.password}
@@ -105,6 +136,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             required
                         />
                         <FormInput
+                            id="confirmPassword"
                             type="password"
                             name="confirmPassword"
                             value={form.confirmPassword}
@@ -113,12 +145,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ form, onChange, onSubmit })
                             required
                         />
                         <div className="flex flex-col items-center mt-4">
-                            <button
-                                type="submit"
-                                className="w-full bg-[#52B693] text-white p-3 rounded-lg font-bold hover:bg-[#429e78] transition-colors"
-                            >
-                                Cadastrar
-                            </button>
+
                             <p className="mt-4 text-sm text-center">
                                 Já tem uma conta?{' '}
                                 <a href="/login" className="text-[#296856] font-semibold">Login</a>
